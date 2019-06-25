@@ -19,7 +19,7 @@ ser = serial.Serial('/dev/ttyAMA0',9600, timeout=1)
 sio = io.TextIOWrapper(io.BufferedRWPair(ser, ser, 1), encoding='ascii', newline='\r')
 
 filename = "gpslogs/" + str(int(time.time()))+".txt"
-picname = "./pics/" 
+picname = "./pics/"
 count = 0
 camera = PiCamera()
 camera.start_preview()
@@ -42,8 +42,6 @@ while True:
 	#print('Button Pressed' + str(mode))
         time.sleep(0.75)
     if mode == 1:
-        picfiname = picname + str( int( time.time() ) ) + ".jpg"
-        print( 'picture file name ' + picfiname)
 #        camera.capture( picfiname )
         savepic()
         sleep(4)
@@ -59,5 +57,3 @@ while True:
 	sleep(3)
     else:
         GPIO.output(ledpin, False )
-
-
