@@ -1,0 +1,14 @@
+{
+  "name": "pi_gps_camera",
+  "version": "1.0.0",
+  "description": "pi camera gps project",
+  "main": "gpgga2geojson.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "mpmckenna8",
+  "license": "ISC",
+  "dependencies": {
+    "line-by-line": "^0.1.6"
+  }
+}
