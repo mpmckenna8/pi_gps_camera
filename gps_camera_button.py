@@ -23,6 +23,7 @@ picname = "./pics/"
 count = 0
 camera = PiCamera()
 camera.start_preview()
+
 sleep(2)
 
 def savepic():
@@ -30,6 +31,26 @@ def savepic():
     print( 'picture file name ' + picfiname)
     camera.capture( picfiname )
 
+
+def printLine():
+    datast = 'hi'
+    try:
+        datast = sio.readline()
+        with open(filename,'a') as f:
+            got_gps = False;
+            while got_gps == False:
+                GPIO.output(ledpin, True)
+                datast = sio.readline()
+                print datast
+                got_gps = True
+            f.write(datast + "\n")
+            f.flush()
+        #print datast
+    except UnicodeDecodeError as err:
+        print('there was some error', err)
+        time.sleep(3)
+        printLine()
+    print datast
 
 
 while True:
@@ -45,15 +66,7 @@ while True:
 #        camera.capture( picfiname )
         savepic()
         sleep(4)
-        with open(filename,'a') as f:
-            got_gps = False;
-            while got_gps == False:
-                GPIO.output(ledpin, True)
-                datast = sio.readline()
-                print datast
-                got_gps = True
-            f.write(datast + "\n")
-            f.flush()
+        printLine()
 	sleep(3)
     else:
         GPIO.output(ledpin, False )
