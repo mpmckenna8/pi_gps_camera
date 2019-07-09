@@ -18,6 +18,11 @@ and stuff but I think should run a pi zero for a while.
 Orientation of the antenna is super important.  Ordered an external antenna but it only seems to work without it if the gps is facing the sky with very few impediments.
 
 
+Keep forgetting to run stuff in the background i can use screen like in. https://medium.com/@arnab.k/how-to-keep-processes-running-after-ending-ssh-session-c836010b26a3
+
+
+to transfer stuff from the pi:
+scp pi@piface.local:/home/pi/project/1561162913.jpg ./pics
 
 materials:
 - pi zero
