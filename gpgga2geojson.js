@@ -1,7 +1,7 @@
 // to make a file from my gps logging into geojson
 let fs = require('fs')
 
-let fileTime = "1561162675"
+let fileTime = process.argv[2] ||  "1561162675"
 
 
 // want to not have lineString if less than one point.
@@ -52,18 +52,33 @@ var LineByLineReader = require('line-by-line'),
       if( line.includes('$GPGGA') ) {
 
         let lineArray = line.split(',')
+        let gpggaIndex = lineArray.findIndex(  (d) => {
+          //console.log('d = ', d)
+          return d.includes('$GPGGA')
+        })
 
-        let lat = parseInt(lineArray[2]/100) + parseFloat(lineArray[2]) % 100 / 60.0
+        console.log('g index = ', gpggaIndex)
 
-        console.log( 'lon = ', parseInt(lineArray[4])/100)
-        let lon = (parseInt(lineArray[4]/100) + parseFloat( lineArray[4]) % 100 / 60) * -1
+
+        let lat = parseInt(lineArray[  gpggaIndex + 2]/100) + parseFloat(lineArray[ gpggaIndex +2 ]) % 100 / 60.0
+
+        console.log( 'lon = ', parseInt(lineArray[gpggaIndex + 4])/100)
+        let lon = (parseInt(lineArray[gpggaIndex + 4]/100) + parseFloat( lineArray[gpggaIndex + 4]) % 100 / 60) * -1
+
         console.log('line = ', lineArray)
 
         let feat = Feature([lon, lat])
+        console.log(feat)
 
-        geojson.features[0].geometry.coordinates.push([lon,lat])
-        geojson.features.push(feat)
+        if( feat.geometry.coordinates[0] && feat.geometry.coordinates[0] !== NaN && feat.geometry.coordinates[1] )  {
 
+
+          geojson.features[0].geometry.coordinates.push([lon,lat])
+          geojson.features.push(feat)
+        }
+        else {
+          console.log('no coords')
+        }
 
 
     }
