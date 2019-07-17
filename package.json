@@ -9,6 +9,7 @@
   "author": "mpmckenna8",
   "license": "ISC",
   "dependencies": {
+    "express": "^4.17.1",
     "line-by-line": "^0.1.6"
   }
 }
