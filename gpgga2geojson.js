@@ -33,9 +33,15 @@ let Feature = function(coords) {
     }
 }
 
-let filename =  './gps_logs/' + fileTime + '.txt'// proecess.arg[2];
+let filename =  './gps_data/' + fileTime + '.txt'// proecess.arg[2];
+console.log('trying to cange thing', filename)
+
+
 var LineByLineReader = require('line-by-line'),
-    lr = new LineByLineReader(filename);
+
+
+
+lr = new LineByLineReader(filename);
 
 
     lr.on('error', function (err) {
@@ -65,6 +71,8 @@ var LineByLineReader = require('line-by-line'),
         console.log( 'lon = ', parseInt(lineArray[gpggaIndex + 4])/100)
         let lon = (parseInt(lineArray[gpggaIndex + 4]/100) + parseFloat( lineArray[gpggaIndex + 4]) % 100 / 60) * -1
 
+
+        //console.log('gps timestamp', )
         console.log('line = ', lineArray)
 
         let feat = Feature([lon, lat])
