@@ -11,7 +11,7 @@ let picasync = function( dir, cb ) {
 
   let pics_array = [];
 
-  fs.readdir('../ride', (err, files ) => {
+  fs.readdir(dir, (err, files ) => {
 
     if(err) {
       console.log('err getting the pictures list')

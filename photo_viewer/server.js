@@ -9,12 +9,17 @@ let pictureArray = require('./pictureArray.js');
 
 app.use(express.static('public'))
 
+
 app.get('/pictures.json', (req, res) => {
 
-  let picsdir = '../ride'
-  pictureArray(picsdir, (pics) => {
+
+  let picsdir = '/pics/home2nb-7-15'
+
+  pictureArray('./public/' + picsdir, (pics) => {
+
+    console.log('pics are =', pics)
     res.json({
-      'pictures':pics,
+      "pictures":pics,
       "directory": picsdir
     })
 
