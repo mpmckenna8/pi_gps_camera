@@ -3,6 +3,7 @@ console.log('need to request all the stuff for all the pictures. ')
 
 let playing = false;
 
+let rotateAngle = 270;
 
 
 let photocontainer = document.querySelector('#photo_container')
@@ -29,10 +30,10 @@ function pictureEle(piclink) {
   pic_div.setAttribute('src', 'pic_diver')
 
   imgele.setAttribute('src',  piclink);
+
   imgele.setAttribute('class', 'pi_pic')
   imgele.setAttribute('id', 'pic' + piclink.split('.')[0] )
 
-  let rotateAngle = 270;
 
   imgele.setAttribute("style", "transform: rotate(" + rotateAngle + "deg)");
 

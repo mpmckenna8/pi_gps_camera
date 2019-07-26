@@ -2,7 +2,7 @@
 
 const express = require('express')
 const app = express()
-const port = 3001
+const port = 8011
 
 let pictureArray = require('./pictureArray.js');
 
@@ -13,7 +13,7 @@ app.use(express.static('public'))
 app.get('/pictures.json', (req, res) => {
 
 
-  let picsdir = '/pics/home2nb-7-15'
+  let picsdir = '/pics/home2nb_7-26'
 
   pictureArray('./public/' + picsdir, (pics) => {
 
@@ -27,6 +27,8 @@ app.get('/pictures.json', (req, res) => {
   })
 
 })
+
+
 
 app.get('/', (req, res) => {
 

@@ -10,6 +10,9 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
-    "line-by-line": "^0.1.6"
+    "line-by-line": "^0.1.6",
+    "node-fetch": "^2.6.0",
+    "strava": "0.0.2",
+    "strava-v3": "^1.14.0"
   }
 }
