@@ -1,3 +1,7 @@
+from time import sleep
+from picamera import PiCamera
+from datetime import datetime, timedelta
+
 import RPi.GPIO as GPIO
 import time
 import os
@@ -5,8 +9,8 @@ import datetime
 import serial
 import io
 
-butpin = 24
-ledpin = 23
+butpin = 23
+ledpin = 24
 mode = 0
 
 
@@ -18,18 +22,12 @@ ser = serial.Serial('/dev/ttyAMA0',9600, timeout=1)
 
 sio = io.TextIOWrapper(io.BufferedRWPair(ser, ser, 1), encoding='ascii', newline='\r')
 
-filename = "gpslogs/" + str(int(time.time()))+".txt"
-picname = "./pics/"
+filename = "/home/pi/project/gpslogs/" + str(int(time.time()))+".txt"
+picname = "/home/pi/project/pics/"
 count = 0
 camera = PiCamera()
 camera.start_preview()
-
 sleep(2)
-
-def savepic():
-    picfiname = picname + str( int( time.time() ) ) + ".jpg"
-    print( 'picture file name ' + picfiname)
-    camera.capture( picfiname )
 
 
 def printLine():
@@ -53,6 +51,14 @@ def printLine():
     print datast
 
 
+
+def savepic():
+    picfiname = picname + str( int( time.time() ) ) + ".jpg"
+    print( 'picture file name ' + picfiname)
+    camera.capture( picfiname )
+
+
+
 while True:
     input_state = GPIO.input(butpin)
     if input_state == False:
@@ -60,9 +66,11 @@ while True:
             mode = 1
         else:
             mode = 0
-	#print('Button Pressed' + str(mode))
+	print('Button Pressed, mode = ' + str(mode))
         time.sleep(0.75)
     if mode == 1:
+        picfiname = picname + str( int( time.time() ) ) + ".jpg"
+        print( 'picture file name ' + picfiname)
 #        camera.capture( picfiname )
         savepic()
         sleep(4)
