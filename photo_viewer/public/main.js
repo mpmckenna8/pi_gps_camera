@@ -9,6 +9,7 @@ let rotateAngle = 270;
 let photocontainer = document.querySelector('#photo_container')
 
 function pictureEle(piclink) {
+
   let pic_div = document.createElement('div');
   let img_div = document.createElement('div')
   let date_p = document.createElement('div')
@@ -25,9 +26,10 @@ function pictureEle(piclink) {
   date_p.innerHTML = pic_date.toString();
 
 
-  console.log(pic_date)
+  //console.log(pic_date)
 
   pic_div.setAttribute('src', 'pic_diver')
+  pic_div.setAttribute('class', 'pic_div')
 
   imgele.setAttribute('src',  piclink);
 
@@ -68,13 +70,27 @@ function showPics( pic_uris ) {
   }
 }
 
+fetch('./collections.json')
+.then( res => res.json())
+.then(json => {
+
+      console.log('picture collections to show in dropdown: ', json)
+
+      populate_album_select( json )
+
+
+
+})
+.catch(err => {
+  console.log('there was an err getting collections', err)
+})
+
 
 fetch('./pictures.json')
   .then( res => res.json())
   .then(json => {
 
-        console.log('pictures to request and show are: ', json)
-
+      //  console.log('pictures to request and show are: ', json)
 
         showPics(json)
 
@@ -84,3 +100,24 @@ fetch('./pictures.json')
   .catch(err => {
     throw err
   })
+
+
+function populate_album_select( collectionsObj ) {
+
+  let collections = collectionsObj.collections
+
+  console.log('need to populate select thing', collections)
+
+  let album_select = document.getElementById('album_select');
+
+  for( collection of collections ) {
+
+    let collection_option = document.createElement('option');
+
+    collection_option.setAttribute('value', collection);
+    collection_option.innerText = collection
+
+    album_select.appendChild(collection_option)
+  }
+
+}
