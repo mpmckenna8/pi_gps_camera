@@ -1,4 +1,4 @@
-// a function to take the name of a directory as a arg and return an array of all the jpgs in theres
+// a function to take the path of a directory as a arg and return an array of all the jpgs in theres
 
 
 let fs = require('fs');
