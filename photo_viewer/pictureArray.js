@@ -3,7 +3,6 @@
 
 let fs = require('fs');
 
-
 //let picsync = fs.readdirSync('../ride' )
 
 //console.log('getting pictures', picsync)
@@ -24,7 +23,8 @@ let picasync = function( dir, cb ) {
 
 }
 
-//picasync('../ride', () => {})
+// sample call
+//picasync('./public/pics/home2fortpoint_8-3', () => {})
 
 
 module.exports = picasync
