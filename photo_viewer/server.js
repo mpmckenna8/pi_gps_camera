@@ -1,6 +1,8 @@
 // simple express server
 
 const express = require('express')
+var bodyParser = require('body-parser')
+
 const app = express()
 const port = 8011
 
@@ -11,14 +13,17 @@ let get_pic_directories = require('./get_photo_dirs.js')
 
 app.use(express.static('public'))
 
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 
 //
-app.get('/pictures.json', (req, res) => {
+app.post('/pictures.json', (req, res) => {
 
 
-  let picsdir = '/pics//home2gg_8-25'
 
   console.log('req body: ', req.body)
+
+  let picsdir = '/pics/' + req.body.directory
 
   pictureArray('./public/' + picsdir, (pics) => {
 

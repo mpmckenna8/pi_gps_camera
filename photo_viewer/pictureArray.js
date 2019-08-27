@@ -16,7 +16,7 @@ let picasync = function( dir, cb ) {
       console.log('err getting the pictures list')
     }
 
-    console.log(files)
+  //  console.log(files)
     cb(files)
     return files
   })

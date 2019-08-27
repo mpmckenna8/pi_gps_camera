@@ -8,6 +8,8 @@ let rotateAngle = 270;
 
 let photocontainer = document.querySelector('#photo_container')
 
+
+
 function pictureEle(piclink) {
 
   let pic_div = document.createElement('div');
@@ -47,10 +49,7 @@ function pictureEle(piclink) {
   pic_div.appendChild(img_div)
 
   return pic_div;
-  /*
-  <img alt="Image" draggable="false" src="https://pbs.twimg.com/media/D_pwJQMXUAA4mVi?format=png&amp;name=small" class="css-9pa8cd">
 
-  */
 }
 
 
@@ -59,8 +58,9 @@ function pictureEle(piclink) {
 function showPics( pic_uris ) {
 
 
-
   let picCount = pic_uris.pictures.length;
+
+  
 
   for(let i = 1; i <= picCount-1; i++) {
 
@@ -86,20 +86,7 @@ fetch('./collections.json')
 })
 
 
-fetch('./pictures.json')
-  .then( res => res.json())
-  .then(json => {
 
-      //  console.log('pictures to request and show are: ', json)
-
-        showPics(json)
-
-
-
-  })
-  .catch(err => {
-    throw err
-  })
 
 
 function populate_album_select( collectionsObj ) {
@@ -119,5 +106,43 @@ function populate_album_select( collectionsObj ) {
 
     album_select.appendChild(collection_option)
   }
+
+
+  album_select.addEventListener('change', (e) => {
+
+    console.log('this = ', this, 'and e = ', e.target.value)
+
+    get_pics(e.target.value)
+
+
+  })
+
+
+
+}
+
+
+function get_pics( pic_dir ) {
+
+  let sendObj = {directory:pic_dir}
+  console.log('trying to send', sendObj)
+  fetch('./pictures.json', {
+    body: JSON.stringify(sendObj),
+    method: 'POST', // or 'PUT'
+    headers:{
+  'Content-Type': 'application/json'
+}
+  })
+    .then( res => res.json())
+    .then(json => {
+        //  console.log('pictures to request and show are: ', json)
+
+          showPics(json)
+
+    })
+    .catch(err => {
+      throw err
+    })
+
 
 }
