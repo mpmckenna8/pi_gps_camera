@@ -1,14 +1,27 @@
 // a js file for making pictures show up
 console.log('need to request all the stuff for all the pictures. ')
 
-let playing = false;
+let playing = true;
 
 let rotateAngle = 270;
 
 
 let photocontainer = document.querySelector('#photo_container')
 
+let pictures = [];
 
+let picCount = 0;
+let pic_index = 0;
+
+
+let delay = 3000;
+
+
+let pics_obj = {};
+let picDir = '';
+
+let pic_element = document.querySelector('#picele')
+let photo_date_div = document.getElementById('photo_date')
 
 function pictureEle(piclink) {
 
@@ -35,18 +48,11 @@ function pictureEle(piclink) {
 
   imgele.setAttribute('src',  piclink);
 
-  imgele.setAttribute('class', 'pi_pic')
-  imgele.setAttribute('id', 'pic' + piclink.split('.')[0] )
 
 
-  imgele.setAttribute("style", "transform: rotate(" + rotateAngle + "deg)");
 
 
-  img_div.appendChild(imgele)
 
-  pic_div.appendChild(date_p)
-
-  pic_div.appendChild(img_div)
 
   return pic_div;
 
@@ -57,18 +63,56 @@ function pictureEle(piclink) {
 
 function showPics( pic_uris ) {
 
+    pics_obj = pic_uris;
 
-  let picCount = pic_uris.pictures.length;
+    picCount = pic_uris.pictures.length;
 
-  
+    pic_element.setAttribute("style", "transform: rotate(" + rotateAngle + "deg)");
+  //for(let i = 1; i <= picCount-1; i++) {
 
-  for(let i = 1; i <= picCount-1; i++) {
+    picDir = pic_uris.directory;
 
-    let pico = pictureEle( pic_uris.directory + '/' + pic_uris.pictures[i])
+    let pico = pictureEle( pic_uris.directory + '/' + pic_uris.pictures[0])
 
     photo_container.appendChild(pico)
+
+    showPic( pic_uris.directory + '/' + pic_uris.pictures[pic_index] )
+
+  //}
+}
+
+
+
+
+
+function showPic( pic_uri ) {
+  let showTime = performance.now();
+  console.log('show individual pic,', pic_uri)
+
+
+  pic_element.setAttribute('src',  pic_uri)
+
+  console.log('picuri', pic_uri)
+  let picname_split = pic_uri.split('/');
+  let picname = picname_split[picname_split.length-1].split('.')[0]
+
+  let pic_date = new Date(parseFloat(picname) * 1000)
+
+
+
+  photo_date_div.innerText = pic_date.toString()
+
+  if(playing === true  && pic_index < picCount - 1 ) {
+
+    pic_index = pic_index + 1;
+  //  console.log('show next pic')
+
+    setTimeout( () => { showPic( picDir + '/' + pics_obj.pictures[pic_index] ) }, 1000 )
+
   }
 }
+
+
 
 fetch('./collections.json')
 .then( res => res.json())
@@ -111,7 +155,7 @@ function populate_album_select( collectionsObj ) {
   album_select.addEventListener('change', (e) => {
 
     console.log('this = ', this, 'and e = ', e.target.value)
-
+    pic_index = 0;
     get_pics(e.target.value)
 
 
@@ -120,6 +164,45 @@ function populate_album_select( collectionsObj ) {
 
 
 }
+
+
+    document.getElementById('play').onclick = function() {
+
+      if(playing) {
+        playing = false;
+      }
+      else {
+        playing = true;
+        showPic( picDir + '/' + pics_obj.pictures[pic_index] )
+
+      }
+      console.log('clicked play')
+    }
+
+    document.getElementById('back').onclick = function() {
+
+      pic_index = pic_index - 1;
+    //  animateMarker();
+        showPic( picDir + '/' + pics_obj.pictures[pic_index] )
+      console.log('clicked back')
+    }
+
+    document.getElementById('forward').onclick = function() {
+
+      pic_index = pic_index + 1;
+              showPic( picDir + '/' + pics_obj.pictures[pic_index] )
+
+      console.log('clicked forward')
+    }
+
+    document.getElementById('reset').onclick = function() {
+
+      counter = 0;
+      pic_index = 0;
+      animateMarker();
+
+      console.log('clicked reset')
+    }
 
 
 function get_pics( pic_dir ) {
@@ -135,9 +218,11 @@ function get_pics( pic_dir ) {
   })
     .then( res => res.json())
     .then(json => {
-        //  console.log('pictures to request and show are: ', json)
+          console.log('pictures to request and show are: ', json)
 
           showPics(json)
+
+
 
     })
     .catch(err => {
