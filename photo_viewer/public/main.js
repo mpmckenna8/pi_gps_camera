@@ -13,6 +13,12 @@ let pictures = [];
 let picCount = 0;
 let pic_index = 0;
 
+let pic_count_span = document.getElementById('photos_length')
+let pic_index_span = document.getElementById('indexnumber');
+
+
+let play_button = document.getElementById('play');
+
 
 let delay = 3000;
 
@@ -72,6 +78,11 @@ function showPics( pic_uris ) {
 
     picDir = pic_uris.directory;
 
+
+    pic_count_span.innerText = picCount;
+    pic_index_span.innerText = pic_index + 1;
+
+
     let pico = pictureEle( pic_uris.directory + '/' + pic_uris.pictures[0])
 
     photo_container.appendChild(pico)
@@ -89,10 +100,11 @@ function showPic( pic_uri ) {
   let showTime = performance.now();
   console.log('show individual pic,', pic_uri)
 
+  pic_index_span.innerText = pic_index + 1;
 
   pic_element.setAttribute('src',  pic_uri)
 
-  console.log('picuri', pic_uri)
+  //  console.log('picuri', pic_uri)
   let picname_split = pic_uri.split('/');
   let picname = picname_split[picname_split.length-1].split('.')[0]
 
@@ -169,10 +181,12 @@ function populate_album_select( collectionsObj ) {
     document.getElementById('play').onclick = function() {
 
       if(playing) {
+        play_button.innerText = "Play"
         playing = false;
       }
       else {
         playing = true;
+        play_button.innerText = "Pause"
         showPic( picDir + '/' + pics_obj.pictures[pic_index] )
 
       }
