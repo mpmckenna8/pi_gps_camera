@@ -6,6 +6,8 @@ div {
 
 #picele {
   float: right;
+  height: auto;
+  width: auto;
 }
 
 .filter-ctrl {

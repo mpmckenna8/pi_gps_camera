@@ -177,6 +177,14 @@ function populate_album_select( collectionsObj ) {
 
 }
 
+document.getElementById('reset').onclick = function() {
+
+  pic_index = 0;
+  showPic( picDir + '/' + pics_obj.pictures[pic_index] )
+
+  console.log('clicked reset')
+}
+
 
     document.getElementById('play').onclick = function() {
 
