@@ -4,17 +4,20 @@ div {
 //  margin: 10px;
 }
 
+#picele {
+  float: right;
+}
 
-        .filter-ctrl {
-          position: absolute;
-          top: 10px;
-          right: 10px;
-          z-index: 1;
-          width: 30%;
-          background-color: #fff;
-          height: 98%;
+.filter-ctrl {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1;
+  width: 30%;
+  background-color: #fff;
+  height: 98%;
 
-          }
+  }
 
 
 .pic_diver {
