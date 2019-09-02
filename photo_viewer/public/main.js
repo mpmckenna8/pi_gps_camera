@@ -119,7 +119,7 @@ function showPic( pic_uri ) {
     pic_index = pic_index + 1;
   //  console.log('show next pic')
 
-    setTimeout( () => { showPic( picDir + '/' + pics_obj.pictures[pic_index] ) }, 1000 )
+    setTimeout( () => { showPic( picDir + '/' + pics_obj.pictures[pic_index] ) }, delay )
 
   }
 }
@@ -170,9 +170,7 @@ function populate_album_select( collectionsObj ) {
     pic_index = 0;
     get_pics(e.target.value)
 
-
   })
-
 
 
 }
@@ -189,7 +187,7 @@ document.getElementById('reset').onclick = function() {
     document.getElementById('play').onclick = function() {
 
       if(playing) {
-        play_button.innerText = "Play"
+        play_button.innerText = "Play "
         playing = false;
       }
       else {
@@ -198,7 +196,7 @@ document.getElementById('reset').onclick = function() {
         showPic( picDir + '/' + pics_obj.pictures[pic_index] )
 
       }
-      console.log('clicked play')
+      console.log('clicked play/pause')
     }
 
     document.getElementById('back').onclick = function() {
@@ -212,7 +210,7 @@ document.getElementById('reset').onclick = function() {
     document.getElementById('forward').onclick = function() {
 
       pic_index = pic_index + 1;
-              showPic( picDir + '/' + pics_obj.pictures[pic_index] )
+      showPic( picDir + '/' + pics_obj.pictures[pic_index] )
 
       console.log('clicked forward')
     }
@@ -224,6 +222,15 @@ document.getElementById('reset').onclick = function() {
       animateMarker();
 
       console.log('clicked reset')
+    }
+
+    document.getElementById('delay_input').onchange = function() {
+
+      delay = document.getElementById('delay_input').value * 1000
+
+
+
+      console.log('changed delay to, ', delay)
     }
 
 
@@ -243,8 +250,6 @@ function get_pics( pic_dir ) {
           console.log('pictures to request and show are: ', json)
 
           showPics(json)
-
-
 
     })
     .catch(err => {
