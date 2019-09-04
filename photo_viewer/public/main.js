@@ -1,9 +1,8 @@
 // a js file for making pictures show up
-console.log('need to request all the stuff for all the pictures. ')
-
 let playing = true;
 
 let rotateAngle = 270;
+let delay = 3000;
 
 
 let photocontainer = document.querySelector('#photo_container')
@@ -20,7 +19,6 @@ let pic_index_span = document.getElementById('indexnumber');
 let play_button = document.getElementById('play');
 
 
-let delay = 3000;
 
 
 let pics_obj = {};
@@ -29,15 +27,15 @@ let picDir = '';
 let pic_element = document.querySelector('#picele')
 let photo_date_div = document.getElementById('photo_date')
 
+
+// creates the initial picture element and div it's inside of
 function pictureEle(piclink) {
 
   let pic_div = document.createElement('div');
   let img_div = document.createElement('div')
   let date_p = document.createElement('div')
 
-
   let imgele = document.createElement("img");
-
 
   let picname_split = piclink.split('/');
   let picname = picname_split[picname_split.length-1].split('.')[0]
@@ -46,19 +44,12 @@ function pictureEle(piclink) {
 
   date_p.innerHTML = pic_date.toString();
 
-
   //console.log(pic_date)
 
   pic_div.setAttribute('src', 'pic_diver')
   pic_div.setAttribute('class', 'pic_div')
 
   imgele.setAttribute('src',  piclink);
-
-
-
-
-
-
 
   return pic_div;
 
@@ -70,6 +61,7 @@ function pictureEle(piclink) {
 function showPics( pic_uris ) {
 
     pics_obj = pic_uris;
+    console.log(pics_obj)
 
     picCount = pic_uris.pictures.length;
 
