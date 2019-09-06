@@ -9,13 +9,16 @@ let args = process.argv;
 
 
 strava.athlete.listActivities({'access_token':token},function(err,payload,limits) {
-    //do something with your payload, track rate limits
 
+
+  if(err) {
+    console.log('there was an err with getting the list of activities for the user: ', err)
+  }
+
+    //do something with your payload, track rate limits with the limits var 
     console.log("activities = ,", payload)
     let activities = payload;
     let count = activities.length;
 
-    if(err) {
-      console.log('there was an err with getting the list of activities for the user: ', err)
-    }
+
 });
