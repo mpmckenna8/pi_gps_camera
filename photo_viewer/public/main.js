@@ -90,7 +90,7 @@ function showPics( pic_uris ) {
 
 function showPic( pic_uri ) {
   let showTime = performance.now();
-  console.log('show individual pic,', pic_uri)
+  //console.log('show individual pic,', pic_uri)
 
   pic_index_span.innerText = pic_index + 1;
 
