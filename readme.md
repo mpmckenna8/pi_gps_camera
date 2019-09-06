@@ -21,8 +21,13 @@ Orientation of the antenna is super important.  Ordered an external antenna but 
 Keep forgetting to run stuff in the background i can use screen like in. https://medium.com/@arnab.k/how-to-keep-processes-running-after-ending-ssh-session-c836010b26a3
 
 
+want to make a line a different color that shows where I went.
+
+
+
 to transfer stuff from the pi:
 scp pi@piface.local:/home/pi/project/1561162913.jpg ./pics
+
 
 materials:
 - pi zero
@@ -34,6 +39,7 @@ materials:
     - button
     - wires
     - female header pins
+  - for custom board fabricated you can use the .brd file in the ./hardware directory.
   - MicroB OTG male to A female
     - https://www.adafruit.com/product/1099
     - If using a regular pi zero to add wifi module
