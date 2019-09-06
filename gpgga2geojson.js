@@ -20,6 +20,7 @@ let geojson = {
 }
 
 
+// returns a point feature, not a geojson valid whole thing
 let Feature = function(coords) {
 
 
@@ -51,7 +52,8 @@ lr = new LineByLineReader(filename);
     lr.on('line', function (line) {
     	// 'line' contains the current line without the trailing newline character.
       /*
-      need to handle when lines are 2 things on aline like:
+
+      need to handle when lines are 2 things on a line like:
       $GPGSV,3,1,12,17,85,112,32,19,66,204,13,28,50,051,16,48,44,1$GPGGA,162824.000,3747.7920,N,12225.4030,W,1,05,1.91,33.0,M,-25.3,M,,*6A
 
       */
@@ -65,33 +67,38 @@ lr = new LineByLineReader(filename);
 
         console.log('g index = ', gpggaIndex)
 
+        if(lineArray[gpggaIndex + 3] === 'N') {
 
-        let lat = parseInt(lineArray[  gpggaIndex + 2]/100) + parseFloat(lineArray[ gpggaIndex +2 ]) % 100 / 60.0
+          let lat = parseInt(lineArray[  gpggaIndex + 2]/100) + parseFloat(lineArray[ gpggaIndex +2 ]) % 100 / 60.0
 
-        console.log( 'lon = ', parseInt(lineArray[gpggaIndex + 4])/100)
-        let lon = (parseInt(lineArray[gpggaIndex + 4]/100) + parseFloat( lineArray[gpggaIndex + 4]) % 100 / 60) * -1
-
-
-        //console.log('gps timestamp', )
-        console.log('line = ', lineArray)
-
-        let feat = Feature([lon, lat])
-        console.log(feat)
-
-        if( feat.geometry.coordinates[0] && feat.geometry.coordinates[0] !== NaN && feat.geometry.coordinates[1] )  {
+          console.log( 'lon = ', parseInt(lineArray[gpggaIndex + 4])/100)
+          let lon = (parseInt(lineArray[gpggaIndex + 4]/100) + parseFloat( lineArray[gpggaIndex + 4]) % 100 / 60) * -1
 
 
-          geojson.features[0].geometry.coordinates.push([lon,lat])
-          geojson.features.push(feat)
+
+          //console.log('gps timestamp', )
+          console.log('line = ', lineArray)
+
+          let feat = Feature([lon, lat])
+
+          console.log('feat = ', feat)
+
+          if( feat.geometry.coordinates[0] && feat.geometry.coordinates[0] !== NaN && feat.geometry.coordinates[1] && feat.geometry.coordinates[1] !== NaN)  {
+            if(feat.geometry.coordinates[0] < 2) {
+
+              geojson.features[0].geometry.coordinates.push([lon,lat])
+              geojson.features.push(feat)
+            }
+          }
+          else {
+
+            console.log('no valid coords for this point')
+
+          }
         }
-        else {
-          console.log('no coords')
-        }
-
 
     }
     });
-
 
 
 
