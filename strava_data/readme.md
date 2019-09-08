@@ -12,20 +12,20 @@ Getting the strava API to work for getting my actual gps traces was a little dif
 
 2. Test that your basic stuff is working. By trying to curl or visiting in your browser https://www.strava.com/api/v3/athlete?access_token=XXXXXXXXXXXX replacing the X's with your access token which should be available from https://www.strava.com/settings/api.
     - If successful it should return a JSON object, which for me was:
-      {"id":20232528,"username":null,"resource_state":2,"firstname":"Matthew","lastname":"McKenna","city":null,"state":null,"country":null,"sex":"M","premium":false,"summit":false,"created_at":"2017-03-03T21:58:14Z","updated_at":"2019-06-10T06:14:41Z","badge_type_id":0,"profile_medium":"https://graph.facebook.com/10106452455454427/picture?height=256\u0026width=256","profile":"https://graph.facebook.com/10106452455454427/picture?height=256\u0026width=256","friend":null,"follower":null}
+      {"id":20232528,"username":null,"resource_state":2,"firstname":"Matthew","lastname":"McKenna","city":null,"state":null,"country":null,"sex":"M","premium":false,"summit":false,"created_at":"2017-03-03T21:58:14Z","updated_at":"2019-06-10T06:14:41Z","badge_type_id":0,"profile_medium":"https://graph.facebook.com/10106329342455454427/picture?height=256\u0026width=256","profile":"https://graph.facebook.com/1q02110645364155454427/picture?height=256\u0026width=256","friend":null,"follower":null}
 
 
-3.  But if you want to read activities you need to further authenticate so that you have the scope to read activities by getting a code then a special token you can refresh. Authenticate in a browser to get a code so you can then get a token which will allow you to access more API endpoints than basic profile info. Replace the XXXXXXXX's in the following link with the client id from https://www.strava.com/settings/api and the redirect URI you entered as well by replacing the YYYYYYY's. Then paste the link into your browser and on which you don't mind logging into Strava.
+3.  But if you want to read activities you need to further authenticate so that you have the scope to read activities by getting a code then a special token you can refresh. Authenticate in a browser to get a code so you can then get a token which will allow you to access more API endpoints than basic profile info. Replace the XXXXXXXX's in the following link with the client id from https://www.strava.com/settings/api and the redirect URI you entered as well by replacing the YYYYYYY's (eg. http://localhost:8000). Then paste the link into your browser and on which you don't mind logging into Strava.
 
- https://www.strava.com/oauth/authorize?client_id=XXXXXX	&response_type=code&redirect_uri=YYYYYYYY&scope=read,activity:read,activity:read_all&approval_prompt=force
+ https://www.strava.com/oauth/authorize?client_id=XXXXXX&response_type=code&redirect_uri=YYYYYYYY&scope=read,activity:read,activity:read_all&approval_prompt=force
 
 
 After you successfully authenticate you should be redirected back to your site. With a querystring appended to the uri. like if you use localhost:8019 for your redirect uri it might look like:
 
-http://localhost:8011/?state=&code=30697ac116643b90c6eg9031af09f25237bffa90&scope=read,activity:read,activity:read_all
+http://localhost:8011/?state=&code=30697ac116643;lkjkj;lkj0c6e32303434309f25237bffa90&scope=read,activity:read,activity:read_all
 
 
-4. The next step requires a POST req not a GET like you can just navigate to in your browser. But you can do a post from you browser with javascript to complete this part, see /photo_viewer/public/strava_auth.html and the js file it loads to see an example of how to do this.  
+4. The next step requires a POST req not a GET like you can just navigate to in your browser. But you can do a post from you browser with javascript to complete this part, see [/photo_viewer/public/strava_auth.html](/photo_viewer/public/strava_auth.html) and the js file it loads to see an example of how to do this.  
 
 After running that use the data returned (which should be printed to the JavaScript console if successful) to make Strava API calls with way more scopes and build cool stuff.
 
