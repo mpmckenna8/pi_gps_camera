@@ -12,6 +12,8 @@ let pictures = [];
 let picCount = 0;
 let pic_index = 0;
 
+let photo_index_slider = document.getElementById('index_slider')
+
 let pic_count_span = document.getElementById('photos_length')
 let pic_index_span = document.getElementById('indexnumber');
 
@@ -75,6 +77,9 @@ function showPics( pic_uris ) {
     pic_index_span.innerText = pic_index + 1;
 
 
+    photo_index_slider.setAttribute('max', picCount)
+
+
     let pico = pictureEle( pic_uris.directory + '/' + pic_uris.pictures[0])
 
     photo_container.appendChild(pico)
@@ -90,19 +95,17 @@ function showPics( pic_uris ) {
 
 function showPic( pic_uri ) {
   let showTime = performance.now();
-  //console.log('show individual pic,', pic_uri)
+  console.log('show individual pic,', pic_uri, 'picindex = ', pic_index);
 
-  pic_index_span.innerText = pic_index + 1;
-
+  pic_index_span.innerText = parseInt(pic_index) + 1;
+  photo_index_slider.setAttribute('value', pic_index)
   pic_element.setAttribute('src',  pic_uri)
 
   //  console.log('picuri', pic_uri)
   let picname_split = pic_uri.split('/');
   let picname = picname_split[picname_split.length-1].split('.')[0]
 
-  let pic_date = new Date(parseFloat(picname) * 1000)
-
-
+  let pic_date = new Date( parseFloat(picname) * 1000)
 
   photo_date_div.innerText = pic_date.toString()
 
@@ -125,8 +128,6 @@ fetch('./collections.json')
       console.log('picture collections to show in dropdown: ', json)
 
       populate_album_select( json )
-
-
 
 })
 .catch(err => {
@@ -214,6 +215,15 @@ document.getElementById('reset').onclick = function() {
       animateMarker();
 
       console.log('clicked reset')
+    }
+
+    photo_index_slider.onclick = function() {
+
+      let slider_value = this.value;
+      pic_index = parseInt(slider_value);
+
+      console.log('slider_value = ', slider_value)
+
     }
 
     document.getElementById('delay_input').onchange = function() {
