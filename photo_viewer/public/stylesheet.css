@@ -1,4 +1,10 @@
 
+
+body {
+  background-color: rgb(21, 32, 43);
+  color: red;
+}
+
 #picele {
   float: right;
   height: auto;
@@ -15,6 +21,8 @@
   height: 98%;
 
   }
+
+
 
 
 .pic_diver {
