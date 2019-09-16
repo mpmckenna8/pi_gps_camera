@@ -5,6 +5,10 @@ body {
   color: red;
 }
 
+#photo_meta {
+  margin: 90px 30px 30px 30px;
+}
+
 #picele {
   float: right;
   height: auto;

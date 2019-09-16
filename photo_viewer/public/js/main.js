@@ -5,22 +5,18 @@ let rotateAngle = 270;
 let delay = 3000;
 
 
-let photocontainer = document.querySelector('#photo_container')
-
 let pictures = [];
 
+// the total number of pics in the collection
 let picCount = 0;
+//
 let pic_index = 0;
 
 let photo_index_slider = document.getElementById('index_slider')
-
 let pic_count_span = document.getElementById('photos_length')
 let pic_index_span = document.getElementById('indexnumber');
-
-
+let photocontainer = document.querySelector('#photo_container')
 let play_button = document.getElementById('play');
-
-
 
 
 let pics_obj = {};
