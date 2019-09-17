@@ -1,10 +1,13 @@
 ## Pi gps camera project to track and take pictures
 
-Goal is to have a thing i can put in my backpack or attach to a bicycle to track
-me and take pictures.  Would be great to have either functionality enabled.
+Goal is to have a thing i can put in my backpack or attach to a bicycle to track me and take pictures.  Would be great to have either functionality be disabled/enabled.
+
+This repository should contain most of the code, files and instruction for other people to make one.
+
+
+####  GPS chip Notes:
 
 The field from the gps data i want is GPGGA.
-
 
 Basic programming going on with the pi is a loop which will grab gps data then
 take a picture every few seconds.  
@@ -20,13 +23,13 @@ Orientation of the antenna is super important.  Ordered an external antenna but 
 
 Keep forgetting to run stuff in the background i can use screen like in. https://medium.com/@arnab.k/how-to-keep-processes-running-after-ending-ssh-session-c836010b26a3
 
-
 want to make a line a different color that shows where I went.
 
 
-
-to transfer stuff from the pi:
+To transfer stuff from the pi:
 scp pi@piface.local:/home/pi/project/1561162913.jpg ./pics
+
+
 
 
 materials:
