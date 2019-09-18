@@ -196,14 +196,20 @@ document.getElementById('reset').onclick = function() {
 
       pic_index = pic_index - 1;
     //  animateMarker();
+      if( !playing ) {
         showPic( picDir + '/' + pics_obj.pictures[pic_index] )
+      }
       console.log('clicked back')
     }
 
     document.getElementById('forward').onclick = function() {
 
       pic_index = pic_index + 1;
-      showPic( picDir + '/' + pics_obj.pictures[pic_index] )
+
+      if( !playing ) {
+
+        showPic( picDir + '/' + pics_obj.pictures[pic_index] )
+      }
 
       console.log('clicked forward')
     }
