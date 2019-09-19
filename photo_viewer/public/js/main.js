@@ -1,7 +1,11 @@
 // a js file for making pictures show up
-let playing = true;
 
-let rotateAngle = 270;
+let settings = {
+  playing: true,
+  rotateAngle: 270,
+  
+}
+
 let delay = 3000;
 
 
@@ -63,7 +67,7 @@ function showPics( pic_uris ) {
 
     picCount = pic_uris.pictures.length;
 
-    pic_element.setAttribute("style", "transform: rotate(" + rotateAngle + "deg)");
+    pic_element.setAttribute("style", "transform: rotate(" + settings.rotateAngle + "deg)");
   //for(let i = 1; i <= picCount-1; i++) {
 
     picDir = pic_uris.directory;
@@ -109,7 +113,7 @@ function showPic( pic_uri ) {
 
   photo_date_div.innerText = pic_date.toString()
 
-  if(playing === true  && pic_index < picCount - 1 ) {
+  if(settings.playing === true  && pic_index < picCount - 1 ) {
 
     pic_index = pic_index + 1;
   //  console.log('show next pic')
@@ -179,12 +183,12 @@ document.getElementById('reset').onclick = function() {
 
     document.getElementById('play').onclick = function() {
 
-      if(playing) {
+      if(settings.playing) {
         play_button.innerText = "Play "
-        playing = false;
+        settings.playing = false;
       }
       else {
-        playing = true;
+        settings.playing = true;
         play_button.innerText = "Pause"
         showPic( picDir + '/' + pics_obj.pictures[pic_index] )
 
@@ -196,7 +200,7 @@ document.getElementById('reset').onclick = function() {
 
       pic_index = pic_index - 1;
     //  animateMarker();
-      if( !playing ) {
+      if( !settings.playing ) {
         showPic( picDir + '/' + pics_obj.pictures[pic_index] )
       }
       console.log('clicked back')
@@ -206,7 +210,7 @@ document.getElementById('reset').onclick = function() {
 
       pic_index = pic_index + 1;
 
-      if( !playing ) {
+      if( !settings.playing ) {
 
         showPic( picDir + '/' + pics_obj.pictures[pic_index] )
       }
@@ -234,10 +238,12 @@ document.getElementById('reset').onclick = function() {
     })
 
     document.getElementById('delay_input').onchange = function() {
-
       delay = document.getElementById('delay_input').value * 1000
-
-
-
       console.log('changed delay to, ', delay)
+    }
+
+    let rotate_input = document.getElementById('rotate_input')
+
+    rotate_input.onchange = function() {
+      changeRotate(settings, rotate_input)
     }
