@@ -66,15 +66,15 @@ while True:
             mode = 1
         else:
             mode = 0
-	print('Button Pressed, mode = ' + str(mode))
-        time.sleep(0.75)
+	        print('Button Pressed, mode = ' + str(mode))
+            time.sleep(1.75)
     if mode == 1:
         picfiname = picname + str( int( time.time() ) ) + ".jpg"
         print( 'picture file name ' + picfiname)
 #        camera.capture( picfiname )
         savepic()
-        sleep(4)
+        sleep(2)
         printLine()
-	sleep(3)
+	sleep(2)
     else:
         GPIO.output(ledpin, False )
