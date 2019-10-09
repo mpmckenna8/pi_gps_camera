@@ -23,4 +23,9 @@ let rotate_pic = function(pic_path) {
 }
 
 
-rotate_pic("./photo_viewer/public/pics/home2fortpoint_8-3/1564867077.jpg")
+
+module.exports = rotate_pic;
+
+
+// example call
+//rotate_pic("./photo_viewer/public/pics/home2fortpoint_8-3/1564867077.jpg")

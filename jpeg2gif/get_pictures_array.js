@@ -1,4 +1,5 @@
-// to get some get_pictures
+// to get some get_pictures from a given directory
+//and then give them in an array as first argument to the callback.
 
 let get_pictures = require('../photo_viewer/pictureArray.js')
 
@@ -28,4 +29,5 @@ let get_pics = function( dir, fileName, num_pics, cb ) {
 
 module.exports = get_pics;
 
+// example call
 //get_pics('./photo_viewer/public/pics/' + pic_fold , '1569956082.jpg', 7)
