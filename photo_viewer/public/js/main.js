@@ -3,10 +3,8 @@
 let settings = {
   playing: true,
   rotateAngle: 270,
-  
+  delay: 2000
 }
-
-let delay = 3000;
 
 
 let pictures = [];
@@ -21,6 +19,7 @@ let pic_count_span = document.getElementById('photos_length')
 let pic_index_span = document.getElementById('indexnumber');
 let photocontainer = document.querySelector('#photo_container')
 let play_button = document.getElementById('play');
+let filename = document.getElementById('filename');
 
 
 let pics_obj = {};
@@ -95,7 +94,7 @@ function showPics( pic_uris ) {
 
 function showPic( pic_uri ) {
   let showTime = performance.now();
-  console.log('show individual pic,', pic_uri, 'picindex = ', pic_index);
+  //console.log('show individual pic,', pic_uri, 'picindex = ', pic_index);
 
   pic_index_span.innerText = parseInt(pic_index) + 1;
 
@@ -105,21 +104,21 @@ function showPic( pic_uri ) {
 
   pic_element.setAttribute('src',  pic_uri)
 
-  //  console.log('picuri', pic_uri)
   let picname_split = pic_uri.split('/');
   let picname = picname_split[picname_split.length-1].split('.')[0]
+
+  let pic_dislpay = picname_split[picname_split.length-1];
+
+  filename.innerText = pic_dislpay;
 
   let pic_date = new Date( parseFloat(picname) * 1000)
 
   photo_date_div.innerText = pic_date.toString()
 
+  // make sure that playing is true and there are more pictures
   if(settings.playing === true  && pic_index < picCount - 1 ) {
-
     pic_index = pic_index + 1;
-  //  console.log('show next pic')
-
-    setTimeout( () => { showPic( picDir + '/' + pics_obj.pictures[pic_index] ) }, delay )
-
+    setTimeout( () => { showPic( picDir + '/' + pics_obj.pictures[pic_index] ) }, settings.delay )
   }
 }
 
@@ -238,8 +237,8 @@ document.getElementById('reset').onclick = function() {
     })
 
     document.getElementById('delay_input').onchange = function() {
-      delay = document.getElementById('delay_input').value * 1000
-      console.log('changed delay to, ', delay)
+      settings.delay = document.getElementById('delay_input').value * 1000
+      console.log('changed delay to, ', settings.delay)
     }
 
     let rotate_input = document.getElementById('rotate_input')

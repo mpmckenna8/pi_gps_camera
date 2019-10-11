@@ -4,8 +4,7 @@ function changeRotate(settings, rotate_input ) {
 
   settings.rotateAngle = rotate_input.value;
 
-  console.log('need to do the rotate thing', settings)
-
+  console.log('set the rotate thing in settings, ', settings)
 
   return 0;
 }
