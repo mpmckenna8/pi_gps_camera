@@ -48,11 +48,17 @@ Orientation of the antenna is super important.  Ordered an external antenna but 
 
 Keep forgetting to run stuff in the background i can use screen like in. https://medium.com/@arnab.k/how-to-keep-processes-running-after-ending-ssh-session-c836010b26a3
 
-want to make a line a different color that shows where I went.
 
 
 To transfer stuff from the pi:
-scp pi@piface.local:/home/pi/project/1561162913.jpg ./pics
+
+
+    scp pi@piface.local:/home/pi/project/1561162913.jpg ./pics
+
+or better using
+
+
+    rsync -avzhe ssh pi@piface.local:/home/pi/project/pics/ ./relative_destination_dir
 
 
 
