@@ -3,9 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>pi photo viewer</title>
-
-    <link href="stylesheet.css" rel="stylesheet">
-
+    <link href="stylesheet.css" rel="stylesheet"
   </head>
   <body>
     <div id="photo_meta">
@@ -13,8 +11,6 @@
         <select id="album_select">
 
         </select>
-
-
 
         <div>
           <div>Rotate angle: <input type="number" id="rotate_input" value="270"></input></div>
@@ -42,18 +38,28 @@
           <div>
             <p id="filename"></p>
           </div>
+
+          <div id="gif_div">
+            <input type="number" id="gif_num" value="6" step="1"> </input> photos in the .gif
+          </br>
+            <input type="number" id="gif_delay" value=".5" step='.01' > </input> delay between photos.
+          </br>
+            <button id="make_gif">make gif</button>
+          </div>
         </div>
 
     </div>
+
     <div id="photo_container">
 
       <img id="picele">
-
-    </img>
+      </img>
 
     </div>
 
   </body>
+  <script type="text/javascript" src="js/make_gif_post.js"></script>
+
   <script type="text/javascript" src="js/get_pictures.js"></script>
   <script type="text/javascript" src="js/change_settings.js"></script>
 

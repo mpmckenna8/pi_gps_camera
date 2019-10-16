@@ -10,6 +10,9 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
+    "get-pixels": "^3.3.2",
+    "gif-encoder": "^0.7.2",
+    "jimp": "^0.6.4",
     "line-by-line": "^0.1.6",
     "node-fetch": "^2.6.0",
     "strava": "0.0.2",

@@ -21,9 +21,13 @@ let photocontainer = document.querySelector('#photo_container')
 let play_button = document.getElementById('play');
 let filename = document.getElementById('filename');
 
+let make_gif_button = document.getElementById('make_gif');
 
+
+let pic_dislpay = "";
 let pics_obj = {};
 let picDir = '';
+let picName = "";
 
 let pic_element = document.querySelector('#picele')
 let photo_date_div = document.getElementById('photo_date')
@@ -71,7 +75,7 @@ function showPics( pic_uris ) {
 
     picDir = pic_uris.directory;
 
-
+    console.log('picDir = ', picDir)
     pic_count_span.innerText = picCount;
     pic_index_span.innerText = pic_index + 1;
 
@@ -107,7 +111,7 @@ function showPic( pic_uri ) {
   let picname_split = pic_uri.split('/');
   let picname = picname_split[picname_split.length-1].split('.')[0]
 
-  let pic_dislpay = picname_split[picname_split.length-1];
+  pic_dislpay = picname_split[picname_split.length-1];
 
   filename.innerText = pic_dislpay;
 
@@ -127,7 +131,6 @@ function showPic( pic_uri ) {
 fetch('./collections.json')
 .then( res => res.json())
 .then(json => {
-
       console.log('picture collections to show in dropdown: ', json)
 
       populate_album_select( json )
@@ -224,6 +227,12 @@ document.getElementById('reset').onclick = function() {
       animateMarker();
 
       console.log('clicked reset')
+    }
+
+    make_gif_button.onclick = function(e) {
+
+      console.log('make gif with', this, e)
+      makeGifPost(picDir, pic_dislpay)
     }
 
     photo_index_slider.addEventListener('change', function() {
