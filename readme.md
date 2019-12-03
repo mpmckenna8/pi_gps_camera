@@ -74,6 +74,8 @@ materials:
     - wires (if not using pcb)
     - female header pins
   - for custom board fabricated you can use [/hardware/pi_gps_header.brd](/hardware/pi_gps_header.brd) to order with most PCB printers. I used Oshpark and they came out great.
+  ![custom pcb](https://github.com/mpmckenna8/pi_gps_camera/blob/master/hardware/hardware_pics/gps_pcb.png?raw=true"custom pcb)
+
   - MicroB OTG male to A female
     - https://www.adafruit.com/product/1099
     - If using a regular pi zero to add wifi module
