@@ -75,8 +75,7 @@ materials:
     - female header pins
   - for custom board fabricated you can use [/hardware/pi_gps_header.brd](/hardware/pi_gps_header.brd) to order with most PCB printers. I used Oshpark and they came out great.
   
-  
-  ![custom pcb](https://github.com/mpmckenna8/pi_gps_camera/blob/master/hardware/hardware_pics/gps_pcb.png?raw=true"custom pcb)
+  ![custom pcb](https://raw.githubusercontent.com/mpmckenna8/pi_gps_camera/master/hardware/hardware_pics/gps_pcb.png)
 
   - MicroB OTG male to A female
     - https://www.adafruit.com/product/1099
