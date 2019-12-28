@@ -5,6 +5,10 @@ body {
   color: red;
 }
 
+.photo_button {
+  width: 50px;
+}
+
 #photo_meta {
   margin: 20px 30px 30px 30px;
 }
