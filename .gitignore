@@ -1,4 +1,5 @@
-/pics
 /data/strava_config_real.txt
 /ignored
 /data
+/photo_viewer/public/pics
+/node_modules
