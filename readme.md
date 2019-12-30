@@ -65,20 +65,27 @@ or better using
 materials:
 - pi zero
   - https://www.raspberrypi.org/products/raspberry-pi-zero/
+- pi camera
+  - most cameras compatible with any raspberry pi model should work as long as you ensure it can use a pi zero compatible cable.
 - Adafruit ultimate gps module
   - https://www.adafruit.com/product/746?gclid=Cj0KCQjw9JzoBRDjARIsAGcdIDXBLof_z_cauHqBjeDHl8ydptqnGsKCJH4B6jBIlTqc1MbjH_tWZpYaAqeXEALw_wcB
 - custom pi header
   - components:
-    - led
-    - button
+    - led (2)
+    - button (2)
     - wires (if not using pcb)
-    - female header pins
+    - female header pins 
   - for custom board fabricated you can use [/hardware/pi_gps_header.brd](/hardware/pi_gps_header.brd) to order with most PCB printers. I used Oshpark and they came out great.
   
   ![custom pcb](https://raw.githubusercontent.com/mpmckenna8/pi_gps_camera/master/hardware/hardware_pics/gps_pcb.png)
-
+  - microB usb cable
+    - for power
   - MicroB OTG male to A female
     - https://www.adafruit.com/product/1099
     - If using a regular pi zero to add wifi module
-  - microB usb cable
-    - for power
+
+And once you have all the pieces put together it should look like:
+
+
+
+![Side exploded view](https://raw.githubusercontent.com/mpmckenna8/pi_gps_camera/master/hardware/hardware_pics/proto_v1_expanded.jpg)
