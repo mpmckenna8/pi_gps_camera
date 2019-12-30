@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title>Bike ride photo animation</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.0/mapbox-gl.css' rel='stylesheet' />
+    <script src='https://api.tiles.mapbox.com/mapbox.js/plugins/turf/v2.0.0/turf.min.js' charset='utf-8'></script>
+    <link href="./styles.css" rel="stylesheet">
+    
+</head>
+<body>
+
+<div id='map'>
+</div>
+<div class='filter-ctrl'>
+
+  <div>
+    <button id="back" class="photo_button">back</button>
+    <button id="play" class="photo_button">Play</button>
+    <button id="forward" class="photo_button">forward</button>
+    <br/>
+    <button id="reset">reset</button>
+
+    <div>
+      <label>Delay: </label>
+      <input type="number" id="delay_input" value="0.5" step=".1"> </input> seconds
+    </div>
+
+
+    </div>
+    <div>
+      Estimated time:
+      <p id="timep"></p>
+    </div>
+  <div id="photo_container">
+    <img id="photo_img"></img>
+  </div>
+</div>
+
+
+<script type="text/javascript" src="map.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,58 @@
+
+.filter-ctrl {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 1;
+    width: 30%;
+    background-color: #fff;
+    height: 98%;
+  
+    }
+
+    
+.filter-ctrl input[type=text] {
+  font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  width: 100%;
+  border: 0;
+  background-color: #fff;
+  height: 40px;
+  margin: 0;
+    color: rgba(0,0,0,.5);
+    padding: 10px;
+    box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
+    border-radius: 3px;
+  }
+
+  .photo_button {
+    width: 50px;
+  }
+
+  #photo_container {
+    height:200px;
+    margin: 50px 3px 7px 3px;
+    float:right;
+    width: 300px;
+  }
+
+  img {
+    width: 300px;
+    height: 200px;
+  }
+
+  body { margin:0; padding:0; }
+  #map { position:absolute; top:0; bottom:0; width:100%; }
+
+.pic_diver {
+  margin: 10px;
+}
+
+.pic_div {
+  margin: 40px 500px 200px 20px;
+  padding:40px;
+}
+.pi_pic {
+  margin: 10px;
+
+}
+
